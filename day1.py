@@ -35,12 +35,10 @@ def main():
         for char in line: 
             if char.isnumeric(): 
                 numbers.append(char)
-            #print(check(checkLine))
             if check(checkLine) != None: 
                 numbers.append(check(checkLine))
             checkLine = checkLine[1:]
         resultList.append(numbers[0] + numbers[len(numbers)-1])
-    print(resultList)
     result = 0
     for i in resultList: 
         result += int(i)
