@@ -1,8 +1,12 @@
 
 def main(): 
-    lines = open("input4.txt").readlines()
-    finalResult = 0
+    lines = open("example.txt").readlines()
+    resultD = {}
+    card = 0
     for line in lines: 
+        card += 1
+        finalResult = 0
+
         line = line.split(": ")[1]
         winner = line.split("| ")[0]
         mine = line.split("| ")[1]
@@ -18,11 +22,42 @@ def main():
                     nr = nr[:-1]
                 if nr == i:
                     result += 1
-                    #mine.remove(mine[index])
                 index += 1
-            print("result", result)
+            #print("result", result)
         if result: 
-            finalResult += 2**(result-1) 
-        print("finalresult ", finalResult)
+            finalResult += 2**(result-1)
+            for i in range(finalResult): 
+                key = card + i + 1
+                if key > len(lines):
+                    continue
+                if not key in resultD:
+                    resultD[key] = [1]
+                else: 
+                    resultD[key].append(1)
+            if card == 1: 
+                continue
+            for k in range(len(resultD[card])): 
+                key = card + k
+                print(card)
+                if key > len(lines):
+                    continue
+                if not key in resultD:
+                    resultD[key] = [1]
+                else: 
+                    resultD[key].append(1)
+                print(winner, resultD[key], key)
+    final = 0
+    for key in resultD: 
+        for i in resultD[key]: 
+            final += 1
+    print(final)
+
+
+
+
+        #print("finalresult ", finalResult)
+
+
+
 
 main()
